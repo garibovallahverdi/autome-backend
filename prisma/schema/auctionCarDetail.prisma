@@ -1,0 +1,20 @@
+model CarDetail {
+  id             String @id @default(uuid())
+  manufacturer   String
+  brand          String
+  model          String
+  year           String
+  vehicleType    String
+  color          String
+  mileage        String
+  engineCapacity String
+  carSegments    String
+  driveType      String
+  engine         String
+  transmission   String
+  fuelType       String
+  brakeSystem    String
+  auction        Auction  @relation("AuctionCarDetail", fields: [auctionId], references: [id], onDelete:Cascade)
+  auctionId      String  @unique 
+
+ }

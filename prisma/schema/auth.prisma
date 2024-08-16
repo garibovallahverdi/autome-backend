@@ -1,0 +1,21 @@
+model User {
+  id       String   @id @default(uuid())
+  googleId String?   @unique 
+  firstName    String  
+  lastName     String  
+  email    String   @unique
+  password String
+  location String?
+  role     String   @default("user")
+  auctions Auction[]    @relation("UserLots")
+  participations    Participant[] @relation("ParticipantUsers") // İsimlendirilmiş ilişki
+  bides    Bid[]    @relation("UserOffers") // Kullanıcının teklifleri
+  verificationCode       String?
+  verificationCodeExpiresAt DateTime?
+  resetPassswordCode  String?
+  resetPassCodeExpiresAt DateTime?
+  isEmailVerified            Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+}

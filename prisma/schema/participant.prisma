@@ -1,0 +1,16 @@
+model Participant {
+  userId    String   
+  auctionId String
+  status         ParticipantStatus @default(participant)
+  bidCount  Int           @default(0)
+  users      User        @relation("ParticipantUsers", fields: [userId], references: [id], onDelete: Cascade)
+  auctions   Auction    @relation("AuctionParticipants", fields: [auctionId], references: [id], onDelete: Cascade)
+
+  @@id([userId, auctionId]) // Birincil anahtar olarak her iki alanı birlikte kullan
+}
+
+
+enum ParticipantStatus {
+  participant
+  winner 
+}

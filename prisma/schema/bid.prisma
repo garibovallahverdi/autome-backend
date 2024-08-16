@@ -1,0 +1,10 @@
+model Bid {
+  id        String      @id @default(uuid())
+  amount    Float    // Teklif miktarı
+  createdAt DateTime @default(now())
+  user      User     @relation("UserOffers", fields: [userId], references: [id],onDelete: Cascade)
+  userId    String
+  auction   Auction  @relation("AuctionOffers", fields: [auctionId], references: [id],onDelete: Cascade)
+  auctionId String
+    
+}

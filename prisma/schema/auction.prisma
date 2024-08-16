@@ -1,0 +1,34 @@
+
+
+model Auction {
+  id             String   @id @default(uuid())
+  slug           String   @unique
+  lotName        String
+  ownerId        String
+  owner          User     @relation("UserLots", fields: [ownerId], references: [id], onDelete: Cascade)
+  participants   Participant[] @relation("AuctionParticipants") 
+  bides          Bid[]      @relation("AuctionOffers")
+  carDetail      CarDetail? @relation("AuctionCarDetail")
+  carDetailId    String?
+  ownerName      String
+  location       String
+  startPrice     Int
+  interval       Int?
+  image          String[]
+  startTime      DateTime
+  status         LotStatus @default(scheduled)
+  detailsText    String
+  lotNumber      Int
+  bidCounts      Int      @default(0)
+  lotViews       Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+}
+
+enum LotStatus {
+  scheduled 
+  active
+  completed
+}
+

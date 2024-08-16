@@ -20,7 +20,11 @@ dotenv.config();
 
 const numCPUs = os.cpus().length;
 const RedisStore = connectRedis(session);
-const redis = new Redis();
+const redis = new Redis({
+  port: parseInt(process.env.REDIS_PORT as string, 10),
+  host: process.env.REDIS_HOST,
+  password: process.env.REDIS_PASSWORD,
+});
 
 if (cluster.isPrimary) {
   console.log(`Primary ${process.pid} is running`);

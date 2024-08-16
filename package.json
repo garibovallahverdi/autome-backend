@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node build/server.js",
+    "postinstall": "prisma generate",
     "dev": "nodemon --exec ts-node src/server.ts",
     "build": "tsc && prisma generate",
     "lint": "eslint . --ext .ts"

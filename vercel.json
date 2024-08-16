@@ -3,13 +3,9 @@
     {
       "src": "src/server.ts",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["prisma/**"] }
+      "config": {
+        "includeFiles": ["prisma/**"]
+      }
     }
-  ],
-  "functions": {
-    "api/**/*.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+  ]
 }

@@ -2,7 +2,9 @@ import Bull from 'bull';
 import prisma from '../config/db';
 
 const auctionQueue = new Bull('auctionQueue', {
-  redis: { host: process.env.REDIS_HOST, port: Number(process.env.REDIS_PORT) },
+  redis: {  port: parseInt(process.env.REDIS_PORT as string, 10),
+  host: Number(process.env.REDIS_HOST),
+  password: process.env.REDIS_PASSWORD, },
 });
 
 // Auction başlangıç job'u

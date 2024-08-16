@@ -1,18 +1,15 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "src/server.ts",
       "use": "@vercel/node",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
+      "config": { "includeFiles": ["prisma/**"] }
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "src/server.ts"
+  "functions": {
+    "api/**/*.ts": {
+      "memory": 1024,
+      "maxDuration": 10
     }
-  ]
+  }
 }
